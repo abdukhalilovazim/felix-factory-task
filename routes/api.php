@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::apiResources(
+    [
+        'product' => \App\Http\Controllers\ProductController::class,
+        'material' => \App\Http\Controllers\MaterialController::class,
+    ]
+);
+Route::post('warehouse', [\App\Http\Controllers\WarehouseController::class, 'store']);
+Route::post('order', [\App\Http\Controllers\WarehouseController::class, 'getProductMaterials']);
