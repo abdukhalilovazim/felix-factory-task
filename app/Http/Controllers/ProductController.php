@@ -91,8 +91,9 @@ class ProductController extends Controller
             })->toArray();
             $model->productMaterials()->delete();
             $model->productMaterials()->createMany($materials);
+            return new SingleProductResource($model);
         }
-        return new SingleProductResource($model);
+        return response()->json(['data' => []]);
     }
 
 
@@ -105,6 +106,6 @@ class ProductController extends Controller
         if ($model) {
             $model->delete();
         }
-        return new SingleProductResource($model);
+        return response()->json(['data' => []]);
     }
 }
